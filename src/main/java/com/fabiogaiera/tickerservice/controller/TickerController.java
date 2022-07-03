@@ -1,45 +1,51 @@
 package com.fabiogaiera.tickerservice.controller;
 
-import com.fabiogaiera.tickerservice.domain.BillingRequest;
 import com.fabiogaiera.tickerservice.domain.BillingResponse;
-import com.fabiogaiera.tickerservice.service.CustomerProductService;
+import com.fabiogaiera.tickerservice.service.TickerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 @RestController
 public class TickerController {
 
-    private CustomerProductService customerProductService;
+    private TickerService tickerService;
+
 
     private static final Logger logger = LoggerFactory.getLogger(TickerController.class);
 
-    @GetMapping("/generatebill")
-    public ResponseEntity<BillingResponse> generateBill(@RequestBody @Valid @NotNull BillingRequest billingRequest) {
+    @GetMapping("/getprices")
+    public ResponseEntity<BillingResponse> getPrices(@RequestParam(name = "ticker")
+                                                     @NotNull String ticker,
 
-        logger.info(String.format("%s%s", "Start getting prices for s ", billingRequest.getCustomerIdentifier()));
+                                                     @RequestParam(name = "date")
+                                                     @NotNull
+                                                     @DateTimeFormat(pattern = "yyyy-MM-dd") Date date) {
 
-        BillingResponse billingResponse = new BillingResponse();
-        billingResponse.setCustomer(customerProductService.getCustomerDetails(billingRequest.getCustomerIdentifier()));
-        billingResponse.setAmount(customerProductService.getBillingAmount(billingRequest.getProductIdentifierQuantityMap()));
+        //TODO format date properly
+        logger.debug(String.format("%s%s%s%s", "Start getting prices for ticker ", ticker, " and date ", date));
 
-        logger.info(String.format("%s%s", "End generating bill for customer identifier ", billingRequest.getCustomerIdentifier()));
+        tickerService.getPrices();
 
-        return new ResponseEntity<>(billingResponse, HttpStatus.OK);
+        //TODO format date properly
+        logger.debug(String.format("%s%s%s%s", "End getting prices for ticker ", ticker, " and date ", date));
+
+        return new ResponseEntity<>(HttpStatus.OK);
 
     }
 
     @Autowired
-    public void setPoseidonService(CustomerProductService customerProductService) {
-        this.customerProductService = customerProductService;
+    public void setTickerService(TickerService tickerService) {
+        this.tickerService = tickerService;
     }
 
 }

@@ -1,6 +1,0 @@
-server:
-  port: 8082
-
-url:
-  productservice: http://localhost:8084/productservice
-  customerservice: http://localhost:8086/customerservice
