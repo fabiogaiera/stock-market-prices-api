@@ -1,1 +1,1 @@
-# stock-market-prices
+# Stock Market Prices API
