@@ -48,7 +48,7 @@ public class TickerControllerTest {
         ResponseEntity<BillingResponse> responseEntity = tickerController.generateBill(billingRequest);
 
         // Assertions
-        assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
+        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         assertEquals(customer, Objects.requireNonNull(responseEntity.getBody()).getCustomer());
         assertEquals(amount, responseEntity.getBody().getAmount(), 0.0005);
 

@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,10 +22,10 @@ public class TickerController {
 
     private static final Logger logger = LoggerFactory.getLogger(TickerController.class);
 
-    @PostMapping("/generatebill")
+    @GetMapping("/generatebill")
     public ResponseEntity<BillingResponse> generateBill(@RequestBody @Valid @NotNull BillingRequest billingRequest) {
 
-        logger.info(String.format("%s%s", "Start generating bill for customer identifier ", billingRequest.getCustomerIdentifier()));
+        logger.info(String.format("%s%s", "Start getting prices for s ", billingRequest.getCustomerIdentifier()));
 
         BillingResponse billingResponse = new BillingResponse();
         billingResponse.setCustomer(customerProductService.getCustomerDetails(billingRequest.getCustomerIdentifier()));
@@ -33,7 +33,7 @@ public class TickerController {
 
         logger.info(String.format("%s%s", "End generating bill for customer identifier ", billingRequest.getCustomerIdentifier()));
 
-        return new ResponseEntity<>(billingResponse, HttpStatus.CREATED);
+        return new ResponseEntity<>(billingResponse, HttpStatus.OK);
 
     }
 
