@@ -19,10 +19,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(SpringExtension.class)
-public class BillingControllerTest {
+public class TickerControllerTest {
 
     @InjectMocks
-    private BillingController billingController;
+    private TickerController tickerController;
 
     @Mock
     private CustomerProductService customerProductService;
@@ -45,7 +45,7 @@ public class BillingControllerTest {
         when(customerProductService.getBillingAmount(billingRequest.getProductIdentifierQuantityMap())).thenReturn(amount);
 
         // Call to service
-        ResponseEntity<BillingResponse> responseEntity = billingController.generateBill(billingRequest);
+        ResponseEntity<BillingResponse> responseEntity = tickerController.generateBill(billingRequest);
 
         // Assertions
         assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());

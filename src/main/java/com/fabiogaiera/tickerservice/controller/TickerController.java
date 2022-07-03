@@ -16,11 +16,11 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 @RestController
-public class BillingController {
+public class TickerController {
 
     private CustomerProductService customerProductService;
 
-    private static final Logger logger = LoggerFactory.getLogger(BillingController.class);
+    private static final Logger logger = LoggerFactory.getLogger(TickerController.class);
 
     @PostMapping("/generatebill")
     public ResponseEntity<BillingResponse> generateBill(@RequestBody @Valid @NotNull BillingRequest billingRequest) {
