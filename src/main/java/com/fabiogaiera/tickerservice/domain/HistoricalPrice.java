@@ -16,6 +16,8 @@ public class HistoricalPrice {
 
     private BigDecimal low;
 
+    private BigDecimal close;
+
     private BigDecimal adjustedClose;
 
     private Integer volume;
