@@ -1,5 +1,5 @@
 package com.fabiogaiera.tickerservice.service;
 
-public class CustomerProductServiceTest {
+public class TickerServiceTest {
 
 }

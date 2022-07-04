@@ -17,7 +17,7 @@ public class TickerControllerTest {
     private TickerService tickerService;
 
     @Test
-    public void testGetPrices() {
+    public void testGetPrice() {
 
     }
 
