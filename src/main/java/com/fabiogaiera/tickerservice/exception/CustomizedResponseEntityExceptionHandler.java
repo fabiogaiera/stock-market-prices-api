@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 @ControllerAdvice
@@ -16,9 +17,20 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
     @ExceptionHandler(Exception.class)
     public final ResponseEntity<ErrorResponse> handleException(Exception ex) {
 
+        //TODO return JSON content
         ErrorResponse errorResponse = new ErrorResponse();
         logger.error(String.format("%s%s", "Error during processing the request: ", ex.getMessage()));
-        return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+
+    }
+
+    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    public final ResponseEntity<ErrorResponse> handleMethodArgumentTypeMismatchException(Exception ex) {
+
+        //TODO return JSON content
+        ErrorResponse errorResponse = new ErrorResponse();
+        logger.error(String.format("%s%s", "Error during processing the request: ", ex.getMessage()));
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
     }
 
