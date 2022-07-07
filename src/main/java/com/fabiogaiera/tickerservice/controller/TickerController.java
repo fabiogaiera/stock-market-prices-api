@@ -1,6 +1,7 @@
 package com.fabiogaiera.tickerservice.controller;
 
 import com.fabiogaiera.tickerservice.domain.HistoricalPrice;
+import com.fabiogaiera.tickerservice.domain.Ticker;
 import com.fabiogaiera.tickerservice.service.TickerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +18,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
-@RestController
+@RestController("/api")
 public class TickerController {
 
     private TickerService tickerService;
@@ -36,14 +37,18 @@ public class TickerController {
                                                                   @NotBlank
                                                                   @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date) {
 
-
         logger.debug(String.format("%s%s%s%s", "Start getting price for ticker ", ticker, " and date ", date));
 
+        Ticker tickerInstance = tickerService.getTickerInformation(ticker);
         HistoricalPrice historicalPrice = tickerService.getHistoricalPrice(ticker, date);
 
-        logger.debug(String.format("%s%s%s%s", "End getting price for ticker ", ticker, " and date ", date));
-
-        return new ResponseEntity<>(buildResponse(ticker, historicalPrice), HttpStatus.OK);
+        if ((tickerInstance != null) && (historicalPrice != null)) {
+            logger.debug(String.format("%s%s%s%s", "End getting price for ticker ", ticker, " and date ", date));
+            return new ResponseEntity<>(buildResponse(tickerInstance, historicalPrice), HttpStatus.OK);
+        } else {
+            logger.debug(String.format("%s%s%s%s", "Not data found for ticker ", ticker, " and date ", date));
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
 
     }
 
@@ -52,8 +57,8 @@ public class TickerController {
         this.tickerService = tickerService;
     }
 
-    private TickerHistoricalPriceResponse buildResponse(String ticker, HistoricalPrice historicalPrice) {
-        return null;
+    private TickerHistoricalPriceResponse buildResponse(Ticker ticker, HistoricalPrice historicalPrice) {
+        return new TickerHistoricalPriceResponse(ticker, historicalPrice);
     }
 
 }
