@@ -1,4 +1,4 @@
-package com.fabiogaiera.tickerservice.domain;
+package com.fabiogaiera.tickerservice.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 

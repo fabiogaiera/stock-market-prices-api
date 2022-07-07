@@ -1,7 +1,7 @@
 package com.fabiogaiera.tickerservice.controller;
 
-import com.fabiogaiera.tickerservice.domain.HistoricalPrice;
-import com.fabiogaiera.tickerservice.domain.Ticker;
+import com.fabiogaiera.tickerservice.entity.HistoricalPrice;
+import com.fabiogaiera.tickerservice.entity.Ticker;
 import lombok.Data;
 
 @Data

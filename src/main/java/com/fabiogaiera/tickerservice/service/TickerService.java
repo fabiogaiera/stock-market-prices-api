@@ -1,7 +1,7 @@
 package com.fabiogaiera.tickerservice.service;
 
-import com.fabiogaiera.tickerservice.domain.HistoricalPrice;
-import com.fabiogaiera.tickerservice.domain.Ticker;
+import com.fabiogaiera.tickerservice.entity.HistoricalPrice;
+import com.fabiogaiera.tickerservice.entity.Ticker;
 import com.fabiogaiera.tickerservice.repository.HistoricalPriceRepository;
 import com.fabiogaiera.tickerservice.repository.TickerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
