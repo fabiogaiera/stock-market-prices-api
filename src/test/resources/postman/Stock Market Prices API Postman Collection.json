@@ -11,12 +11,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/getprice?ticker=AAPL&date=1986-03-13",
+					"raw": "localhost:8080/api/getprice?ticker=AAPL&date=1986-03-13",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
+						"api",
 						"getprice"
 					],
 					"query": [
