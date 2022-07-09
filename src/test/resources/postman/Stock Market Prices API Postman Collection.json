@@ -1,0 +1,37 @@
+{
+	"info": {
+		"_postman_id": "282d38bc-4826-408d-8fd5-9c274da8d56e",
+		"name": "Stock Market Prices API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "getprice",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/getprice?ticker=AAPL&date=1986-03-13",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"getprice"
+					],
+					"query": [
+						{
+							"key": "ticker",
+							"value": "AAPL"
+						},
+						{
+							"key": "date",
+							"value": "1986-03-13"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
