@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "282d38bc-4826-408d-8fd5-9c274da8d56e",
+		"_postman_id": "83335bfb-753b-4d23-888e-70a30b077663",
 		"name": "Stock Market Prices API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -28,6 +28,42 @@
 						{
 							"key": "date",
 							"value": "1986-03-13"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "postprice",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": []
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8080/api/postprice",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"postprice"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
 						}
 					]
 				}
