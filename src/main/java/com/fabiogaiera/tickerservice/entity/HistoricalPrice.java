@@ -38,6 +38,22 @@ public class HistoricalPrice {
     @JoinColumn(name = "ticker_id")
     private Ticker ticker;
 
+    public HistoricalPrice() {
+    }
+
+    public HistoricalPrice(LocalDate date, BigDecimal open, BigDecimal high, BigDecimal low, BigDecimal close, BigDecimal adjustedClose, Integer volume, Ticker ticker) {
+
+        this.date = date;
+        this.open = open;
+        this.high = high;
+        this.low = low;
+        this.close = close;
+        this.adjustedClose = adjustedClose;
+        this.volume = volume;
+        this.ticker = ticker;
+
+    }
+
     public Long getId() {
         return id;
     }
