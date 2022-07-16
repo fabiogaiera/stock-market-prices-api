@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "83335bfb-753b-4d23-888e-70a30b077663",
+		"_postman_id": "2bc1bbf6-6363-4359-840d-c10caee7573c",
 		"name": "Stock Market Prices API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -58,13 +58,6 @@
 					"path": [
 						"api",
 						"postprice"
-					],
-					"query": [
-						{
-							"key": "",
-							"value": null,
-							"disabled": true
-						}
 					]
 				}
 			},
