@@ -2,7 +2,7 @@ package com.fabiogaiera.tickerservice.controller;
 
 import com.fabiogaiera.tickerservice.entity.HistoricalPrice;
 import com.fabiogaiera.tickerservice.entity.Ticker;
-import com.fabiogaiera.tickerservice.service.CSVFileService;
+import com.fabiogaiera.tickerservice.service.FileService;
 import com.fabiogaiera.tickerservice.service.TickerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,9 +16,8 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.io.IOException;
 import java.time.LocalDate;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 @RestController
 @RequestMapping("/api")
@@ -26,20 +25,14 @@ public class TickerController {
 
     private TickerService tickerService;
 
-    private CSVFileService csvFileService;
+    private FileService fileService;
 
     private static final Logger logger = LoggerFactory.getLogger(TickerController.class);
 
     @PostMapping("/postprice")
-    public ResponseEntity<?> postPrice(@RequestParam("file") MultipartFile file) {
+    public ResponseEntity<?> postPrice(@RequestParam("file") MultipartFile file) throws IOException {
 
-        Runnable runnableTask = () -> {
-            //TODO expensive operation here
-        };
-
-        ExecutorService executorService = Executors.newSingleThreadExecutor();
-        executorService.execute(runnableTask);
-        executorService.shutdown();
+        fileService.storageCSVContent((file.getBytes()));
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
 
     }
@@ -77,8 +70,8 @@ public class TickerController {
     }
 
     @Autowired
-    public void setCsvReaderService(CSVFileService csvFileService) {
-        this.csvFileService = csvFileService;
+    public void setFileService(FileService fileService) {
+        this.fileService = fileService;
     }
 
     private TickerHistoricalPriceResponse buildResponse(Ticker ticker, HistoricalPrice historicalPrice) {

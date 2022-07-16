@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import java.io.IOException;
+
 @ControllerAdvice
 public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
@@ -33,5 +35,16 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
     }
+
+    @ExceptionHandler(IOException.class)
+    public final ResponseEntity<ErrorResponse> handleIOException(Exception ex) {
+
+        //TODO return JSON content
+        ErrorResponse errorResponse = new ErrorResponse();
+        logger.error(String.format("%s%s", "Error during processing the request: ", ex.getMessage()));
+        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+
+    }
+
 
 }
