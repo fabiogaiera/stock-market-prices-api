@@ -1,2 +1,2 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-# Stock Market Prices API
+# Stock Market Pricing API
